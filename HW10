@@ -1,0 +1,91 @@
+import random
+class Instrument:
+    def __init__(self, model, brand, strength):
+        self.model = model
+        self.brand = brand
+        self.strength = strength * 100
+
+    def __str__(self):
+        return f"{self.brand} {self.model} ({self.strength} / 100 strength)"
+
+    def does_break(self):
+        random_num = random.randrange(0, 101)
+        return random_num > self.strength
+
+class Musician:
+    def __init__(self, stage_name="", instruments=[]):
+        self.stage_name = stage_name
+        self.instruments = instruments
+        num_of_int = len(instruments)
+        self.number_of_instruments = num_of_int
+
+    def __str__(self):
+        string = f"Musician object '{self.stage_name}', owning a {', '.join([str(instrument) for instrument in self.instruments])}"
+        return string
+
+    def pick_instrument(self, instrument_index=None):
+        if self.number_of_instruments == 0:
+            return None
+        elif instrument_index == None:
+            return random.choice(self.instruments)
+        elif instrument_index >= self.number_of_instruments:
+            return self.instruments[-1]
+        else:
+            return self.instruments[instrument_index]
+
+def get_name_of_battle_winner(p1, p2):
+    duel_number = 0
+    for duel_number in range(0, 11):
+        if p1.number_of_instruments == 0 == p2.number_of_instruments:
+            return "NO CONTEST"
+        elif p1.number_of_instruments == 0 and p2.number_of_instruments > 0:
+            winner = p2.stage_name
+            p2.number_of_instruments -= 1
+
+            print(f"{p1.stage_name} picked a {p1.instrument} / 100 strength)")
+            print(f"{p2.stage_name} picked a {p2.instrument} / 100 strength)")
+            print("\n")
+            return winner
+        elif p2.number_of_instruments == 0 and p1.number_of_instruments > 0:
+            winner = p1.stage_name
+            p1.number_of_instruments -= 1
+
+            print(f"{p1.stage_name} picked a {p1.brand} {p1.model} ({p2.strength} / 100 strength)")
+            print(f"{p2.stage_name} picked a {p2.brand} {p2.model} ({p2.strength} / 100 strength)")
+            print("\n")
+            return winner
+        else:
+            duel_number += 1
+            p1_instrument = p1.pick_instrument(random.randrange(p1.number_of_instruments))
+            p2_instrument = p2.pick_instrument(random.randrange(p2.number_of_instruments))
+            if p1_instrument.strength > p2_instrument.strength:
+                winner = p1.stage_name
+                print(f"{p1.stage_name} picked {p1_instrument}!")
+                print(f"{p2.stage_name} picked {p2_instrument}!")
+            elif p1_instrument.strength < p2_instrument.strength:
+                winner = p2.stage_name
+                print(f"{p1.stage_name} picked {p1_instrument}!")
+                print(f"{p2.stage_name} picked {p2_instrument}!")
+            else:
+                winner = p1.stage_name if random.randrange(0, 2) else p2.stage_name
+                print(f"{p1.stage_name} picked {p1_instrument}!")
+                print(f"{p2.stage_name} picked {p2_instrument}!")
+                print("Both musician's instruments are the same strength. The winner will be decided by the whim of chance. ")
+            return winner
+
+def main():
+    danelectro = Instrument("Stock '59", "Danelectro", 0.25)
+    fender_vi = Instrument("VI Bass", "Fender", 0.99)
+    four_double_o_one = Instrument("4001C64 Bass", "Rickenbacker", 0.856)
+
+    gear = [danelectro, fender_vi, four_double_o_one]
+
+    sad_musician = Musician("Robert Smith", gear)
+    less_sad_musician = Musician("Miki Berenyi", gear)
+
+    number_of_duels = 10
+    for duel_number in range(number_of_duels):
+        winner_name = get_name_of_battle_winner(sad_musician, less_sad_musician)
+        print(f"THE WINNER OF DUEL #{duel_number + 1} IS {winner_name}!", end="\n\n")
+
+main()
