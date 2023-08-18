@@ -1,0 +1,96 @@
+#Q1: Hello, You!
+
+#user's name
+user_name = str(input("Please enter your name: "))
+#user's age
+user_age = int(input("Please enter your age: "))
+#print
+print(user_name + ", "+str(user_age) + ", is taking CS-UY 1114")
+***
+***
+#Q2: Some Have Gone and Some Remain
+
+#2023 population
+current_year = 2023
+current_population = 330109174
+#birth every year (Increase population)
+seconds_in_a_year = 31536000
+birth_every_year = int(seconds_in_a_year / 7)
+#death every year (Decrease population)
+death_every_year = int(seconds_in_a_year / 15)
+#new immigration (Increase population)
+new_immigration_every_year = int(seconds_in_a_year / 42)
+#new emigration (Decrease population)
+new_emigration_every_year = int(seconds_in_a_year / 75)
+
+#population change every year
+population_change_per_year=(birth_every_year+new_immigration_every_year)-(death_every_year+new_emigration_every_year)
+
+#user input of expected year
+expected_year = int(input("Please enter a year greater than 2023: "))
+expected_population = ((expected_year - current_year)*(population_change_per_year)+current_population)
+print("The population in year " + str(expected_year) + " will be " + str(expected_population))
+***
+***
+#Q3: Penny Pinching
+
+#user input
+print("Please enter number of coins: ")
+#number of quarters
+number_of_quarters = int(input("Number of quarters: "))
+#number of dimes
+number_of_dimes = int(input("Number of dimes: "))
+#number of nickels
+number_of_nickels = int(input("Number of nickels: "))
+#number of pennies
+number_of_pennies = int(input("Number of pennies: "))
+
+#total amount of money
+total_amount_of_money = (number_of_quarters / 4) + (number_of_dimes / 10) + (number_of_nickels / 20) + (number_of_pennies / 100)
+
+# money in dollar
+total_amount_of_dollar = int(total_amount_of_money)
+
+#money in cents
+total_amount_of_cent = int ((total_amount_of_money-total_amount_of_dollar)*100)
+
+
+#final output
+print("The total is " + str(total_amount_of_dollar) + " dollar(s) and " + str(total_amount_of_cent) + " cents(s).")
+***
+***
+#Q4: Mad as a Hatter, Thin as a Dime
+
+quarter_in_dollar = 0.25
+dime_in_dollar = 0.10
+nickel_in_dollar = 0.05
+penny_in_dollar = 0.01
+
+#user input
+print("Please enter your amount of dollars and cents, in two separate lines.")
+amount_of_dollars = int(input(""))
+amount_of_cents = int(input(""))
+total_amount = amount_of_dollars + (amount_of_cents / 100)
+
+#minimum amount of coins (quarter->dime->nickel->penny)
+
+#number of quarter
+number_of_quarter = int(total_amount // quarter_in_dollar)
+amount_left = total_amount - (number_of_quarter * quarter_in_dollar)
+
+#number of dime
+number_of_dime = int(amount_left // dime_in_dollar)
+amount_left = amount_left - (number_of_dime * dime_in_dollar)
+
+#number of nickel
+number_of_nickel = int(amount_left // nickel_in_dollar)
+amount_left = amount_left - (number_of_nickel * nickel_in_dollar)
+
+#number of penny
+number_of_penny = int(amount_left // penny_in_dollar)
+
+#print
+print( str(amount_of_dollars) + " dollars and " + str(amount_of_cents) + " cents are: " + str(number_of_quarter)
+       + " quarters, " + str(number_of_dime) + " dimes, " + str(number_of_nickel) + " nickels and " +
+       str(number_of_penny) + " pennies")
+
