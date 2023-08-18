@@ -1,0 +1,46 @@
+from pprint import pprint
+def get_chord_dictionary(filepath):
+    dictionary = {}
+
+    chord_file = open(filepath, 'r')
+    chord_file.readline()
+    for line in chord_file:
+        root, chord_name, *notes = line.strip().split()
+        notes = tuple(notes)
+
+        if root not in dictionary:
+            dictionary[root] = {}
+
+        dictionary[root][chord_name] = notes
+
+    return dictionary
+
+def get_possible_chords(notes, chord_dictionary):
+    possible_chords = []
+    for root in chord_dictionary.keys():
+        for chord_name, notes in chord_dictionary[root].items():
+            if all(note in notes for note in notes):
+                possible_chords.append((root, chord_name))
+    return tuple(possible_chords)
+
+def get_chord_progression(chord_progression_filepath, chord_dictionary_filepaht):
+    chord_dict = get_chord_dictionary(chord_dictionary_filepaht)
+    try:
+        chord_progression = open(chord_progression_filepath, 'r')
+    except FileNotFoundError:
+        return {}
+    possible_chords = []
+    for chord in chord_progression:
+        if chord in chord_dict:
+            chord_notes = chord_dict[chord]
+            possible_chords.append(get_possible_chords(chord_notes, chord_dict))
+
+    return tuple(possible_chords)
+
+def write_progression_file():
+    chord_progression = get_chord_progression("progression.csv", "chords.csv")
+    write_progression_file(chord_progression)
+
+    chord_dictionary = get_chord_dictionary("chords-normalised.csv")
+    pprint(chord_dictionary)
+write_progression_file()
