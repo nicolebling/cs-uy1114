@@ -1,0 +1,142 @@
+#Q1: Why, This Car Could Be Systematic, Programmatic, Quadratic!
+
+value_a = float(input("Please enter value of a: "))
+value_b = float(input("Please enter value of b: "))
+value_c = float(input("Please enter value of c: "))
+discriminant_dependent = value_b ** 2 - 4 * value_a * value_c
+
+if value_a == 0 and value_b == 0 and value_c == 0:
+    print("This equation has infinite solution")
+elif value_a == 0 and value_b == 0:
+    print("This equation has no solution")
+elif value_b == 0:
+    print("This equation has no real solution")
+elif discriminant_dependent == 0:
+    number_of_solution = "1 solution"
+    quadratic_formula_answer = (- value_b) / (2 * value_a)
+    print("This equation has ", number_of_solution, " x = ", quadratic_formula_answer, ".")
+else:
+    number_of_solution = "2 solutions"
+    quadratic_formula_answer_1 = ((- value_b) + (value_b ** 2 - 4 * value_a * value_c)) / (2 * value_a)
+    quadratic_formula_answer_2 = ((- value_b) - (value_b ** 2 - 4 * value_a * value_c)) / (2 * value_a)
+
+    print("This equation has ", number_of_solution, " x = ", quadratic_formula_answer_1, " , ", quadratic_formula_answer_2, '.')
+***
+--------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q2: (Odd and Even)Baby Steps
+
+first_odd_numbers = int(input("Please enter a positive integer: "))
+print("Executing while-loop...")
+number = 1
+while number < first_odd_numbers * 2:
+    print(number)
+    number += 2
+
+print("Executing for-loop...")
+for odd_number in range(1, first_odd_numbers * 2, 2):
+    print(odd_number)
+***
+----------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q3: Box Tattooed On Her Arm
+
+positive_integer_n = int(input("Please enter a positive integer: "))
+print("+" + "-" * positive_integer_n + "+")#fixed
+
+for i in range(1, positive_integer_n + 1):
+    line = "|"
+    spaces = positive_integer_n
+    for j in range(i, 0, -1):
+        line = line + str(j)
+    print(line + (" " * (spaces - i)) + "|")
+
+print("+" + "-" * positive_integer_n + "+")#fixed
+***
+----------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q 4: Mod Culture
+positive_integer_n = int(input(""))
+for n in range(1, positive_integer_n + 1 ):
+    even_number = 0
+    odd_number = 0
+    x = n
+    while (x > 0):
+        if x % 2 == 1:
+             odd_number += 1
+        else:
+            even_number += 1
+        x = x // 10
+    if even_number > odd_number:
+        print(n, end = " ")
+***
+----------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q5: 2ne1
+
+from random import randrange
+
+play_or_not = input("Would you like to play 'Twenty-One? [y/n]")
+player_card_1 = randrange(1, 12)
+player_card_2 = randrange(1, 12)
+player_card_3 = randrange(1, 12)
+player_card_total_1 = player_card_1 + player_card_2
+player_card_total_2 = player_card_1 + player_card_2 + player_card_3
+
+computer_card = randrange(0, 101)
+while computer_card < 3 or computer_card > 33:
+    computer_card = randrange(0, 101)
+
+while play_or_not != 'y' and play_or_not != 'n':
+    play_or_not = input("Please enter a valid input! Would you like to play 'Twenty-One? [y/n]")
+
+if play_or_not == 'y':
+    print("Your cards are worth ", player_card_1, " and ", player_card_2)
+    another_card = input("Would you like another card? [y/n]")
+    while another_card != 'y' and another_card != 'n':
+        another_card = input("Please enter a valid input! Would you like another card? [y/n]")
+    if another_card == 'n':
+        if player_card_total_1 == 21 and computer_card > 21:
+            print("Your score is ", player_card_total_1, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("You win! Your score was ", player_card_total_1, ".")
+        elif player_card_total_1 > computer_card:
+            print("Your score is ", player_card_total_1, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("You win! Your score was ", player_card_total_1, ".")
+        elif player_card_total_1 < computer_card:
+            print("Your score is ", player_card_total_1, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("Your opponent wins! Their score was ", computer_card, ".")
+        elif computer_card == 21 and player_card_total_1 > 21:
+            print("Your score is ", player_card_total_1, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("Your opponent wins! Their score was ", computer_card, ".")
+        elif player_card_total_1 == computer_card:
+            print("Your score is ", player_card_total_1, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("It's a draw")
+
+    else:
+        if player_card_total_2 == 21 and computer_card > 21:
+            print("Your score is ", player_card_total_2, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("You win! Your score was ", player_card_total_2, ".")
+        elif player_card_total_2 > computer_card:
+            print("Your score is ", player_card_total_2, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("You win! Your score was ", player_card_total_2, ".")
+        elif player_card_total_2 < computer_card:
+            print("Your score is ", player_card_total_2, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("Your opponent wins! Their score was ", computer_card, ".")
+        elif computer_card == 21 and player_card_total_2 > 21:
+            print("Your score is ", player_card_total_2, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("Your opponent wins! Their score was ", computer_card, ".")
+        elif player_card_total_2 == computer_card:
+            print("Your score is ", player_card_total_2, "!")
+            print("Your opponent's score is ", computer_card, "!")
+            print("It's a draw")
+else:
+    print("Thank you for playing !")
