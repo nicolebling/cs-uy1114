@@ -1,0 +1,77 @@
+def get_decimal_time(mi_hour, mi_minute, mi_sec):
+    total_sec = mi_hour * 3600 + mi_minute * 60 + mi_sec
+    fre_sec = total_sec % 100
+    fre_min = int(((total_sec - fre_sec) % 10000) / 100)
+    fre_hour = int(((total_sec - fre_sec - fre_min * 100)) / 10000)
+
+    decimal_time = (f"{fre_hour}:{fre_min}:{fre_sec}")
+
+    return decimal_time
+
+def get_decimal_date(month, date, year):
+    YEAR_GREGORIAN = 1792
+    fr_month = ""
+    if month == 1:
+        fr_month = "Nivôse"
+    elif month == 2:
+        fr_month = "PLuviôse"
+    elif month == 3:
+        fr_month = "Ventôse"
+    elif month == 4:
+        fr_month = "Germinal"
+    elif month == 5:
+        fr_month = "Floréal"
+    elif month == 6:
+        fr_month = "Prairial"
+    elif month == 7:
+        fr_month = "Messidor"
+    elif month == 8:
+        fr_month = "Thermindor"
+    elif month == 9:
+        fr_month = "Fructidor"
+    elif month == 10:
+        fr_month = "Vendémiaire"
+    elif month == 11:
+        fr_month = "Brumaire"
+    elif month == 12:
+        fr_month = "Frimaire"
+    fr_year = year - YEAR_GREGORIAN
+    fr_decade = fr_year // 100 + 1
+
+    revolutionary_date =(f"{date} {fr_month} Year {fr_year}, Décade {fr_decade} ")
+
+    return revolutionary_date
+
+def get_french_datetime(gregorian_datetime):
+
+    space_ind = gregorian_datetime.find(" ")
+    colum_ind_1 = gregorian_datetime.find(":")
+    mi_hour = int(gregorian_datetime[:colum_ind_1])
+
+    new_gregorian_datetime_1 = gregorian_datetime[colum_ind_1 + 1:space_ind]
+    colum_ind_2 = new_gregorian_datetime_1.find(":")
+    mi_min = int(new_gregorian_datetime_1[:colum_ind_2])
+
+    new_gregorian_datetime_2 = new_gregorian_datetime_1[colum_ind_2 + 1:space_ind]
+    mi_sec = int(new_gregorian_datetime_2[:space_ind])
+
+    revolutionary = gregorian_datetime[space_ind + 1:]
+    slice_ind_1 = revolutionary.find("/")
+    month = int(revolutionary[:slice_ind_1])
+
+    revolutionary_1 = revolutionary[slice_ind_1 + 1:]
+    slice_ind_2 = revolutionary_1.find("/")
+    date = int(revolutionary_1[: slice_ind_2])
+    year = int(revolutionary_1[slice_ind_2 + 1:])
+
+    french_time = get_decimal_time(mi_hour, mi_min, mi_sec)
+    revolutionary_time = get_decimal_date(month, date, year)
+
+    french_datetime = (f"{french_time}\n{revolutionary_time}")
+
+    return french_datetime
+
+
+gregorian_datetime = "16:07:46 03/22/2022"
+french_datetime = get_french_datetime(gregorian_datetime)
+print(french_datetime)
