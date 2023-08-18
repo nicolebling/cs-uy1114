@@ -1,0 +1,93 @@
+#Q1: (s)rewoP ehT ev'l
+
+base = input("Please enter a positive integer to serve as the base:")
+while not(base.isdigit()):
+    base = input("Invalid value for the base (" + str(base) + "). Please enter a positive integer to serve as the base: ")
+
+highest_power = input("Please enter a positive integer to serve as the highest power: :")
+while not(highest_power.isdigit()):
+    highest_power = input("invalid value for the highest power (" + str(highest_power) + "). Please enter a positive integer to serve as the highest power: ")
+
+base = int(base)
+highest_power = int(highest_power)
+
+if highest_power % 2 != 0:
+    highest_power = highest_power - 1
+
+for exponent in range(highest_power, -1, -2):
+    result = base ** exponent
+    print(base, " ^ ", exponent, " = ", result)
+***
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q2: Tamako Market
+
+mochiko = int(input("Enter an amount (g) of mochiko: "))
+sugar = int(input("Enter an amount (g) of sugar: "))
+cornstarch = int(input("Enter an amount (g) of cornstarch: "))
+anko = int(input("Enter an amount (g) of anko: "))
+
+CUP_CONVERT = 220 # in gram
+#Stable amount to make 24 pieces:
+mochiko_in_24_pieces = 3 * CUP_CONVERT
+sugar_in_24_pieces = 1.5 * CUP_CONVERT
+cornstarch_in_24_pieces = 2 * CUP_CONVERT
+anko_in_24_pieces = 1 * CUP_CONVERT
+
+#enter ingredient convert to 24 pieces:
+mochiko = mochiko // mochiko_in_24_pieces
+sugar = sugar // sugar_in_24_pieces
+cornstarch = cornstarch // cornstarch_in_24_pieces
+anko = anko // anko_in_24_pieces
+smallest_amount = min(mochiko, sugar, cornstarch, anko)
+
+print("With this amount of ingredients, you can make ", smallest_amount, "batch(es) of 24 mochi.")
+***
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+***
+#Question 3: Must be funny in the rich man's world
+#kept two variable and check everytime two players exist
+
+players = int(input("How many players played this round? "))
+
+while players <= 0:
+    players = int(input("Invalid input. How many players played this round? "))
+winner = 1
+
+for n in range(1, players + 1):
+    accumulator = 0
+    #player_input = 0
+    player_input = input("Enter the value of a property/asset, or DONE to finish: ")
+
+    while player_input != "DONE":
+        player_input = float(player_input)
+        accumulator += player_input
+        player_input = input("Enter the value of a property/asset, or DONE to finish: ")
+
+    accumulator = round(accumulator, 2)
+
+    print("Player ", n, " has ", accumulator, "dollars.")
+    if n == 1:
+        maximum = accumulator
+    if accumulator > maximum:
+        maximum = accumulator
+        winner = n
+print("Congratulations, player ", winner, "! You won with ", maximum, "!")
+***
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+***
+Q4:
+import turtle
+
+MAX = 20
+CIRCLE_DEGREE = 360
+
+number_of_polygon = int(input("Please enter the value of desire polygon: "))
+
+inner_angle = 360 / number_of_polygon
+    
+for number in range(0, MAX):
+    for shape in range(0, number_of_polygon):
+        turtle.forward(120)
+        turtle.left(CIRCLE_DEGREE / number_of_polygon)
+    turtle.left(18)
