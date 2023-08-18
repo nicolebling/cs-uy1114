@@ -1,0 +1,85 @@
+#Q1: Read Between the Words
+
+def get_word_count(file):
+    try:
+        open_file = open(file, 'r')
+    except FileNotFoundError:
+        print(f"Warning! The {file} can not be found")
+        return 0
+    else:
+        spaces = 0
+        words = 0
+        num_line = 0
+        for line in open_file:
+            line = line.strip()
+            num_line += 1
+            for char in line:
+                if char == " ":
+                    spaces += 1
+                    words = spaces + num_line
+
+    return words
+
+def main():
+    count = get_word_count("voltaire.txt")
+    print(f"This file has {count} word(s).")
+
+main()
+***
+------------------------------------------------------------------------------------
+***
+#Q2: The Root of this problem is that it's average
+
+def get_root_of_average(filename, root):
+    try:
+        open_file = open(filename, 'r')
+        numbers = []
+        count = 0
+        for line in open_file:
+            line = line.strip()
+            for num in line.split():
+                if num != "NULL":
+                    numbers.append(float(num))
+                    count += 1
+                else:
+                    print("WARNING: Could not cast 'NULL' into a float")
+            result = (sum(numbers) / count) ** (1/root)
+            return result
+
+    except FileNotFoundError:
+        print(f"The file {filename} could not be found.")
+        return 0
+
+def main():
+    cubed_root = get_root_of_average("numbers.txt", 3)
+    print(cubed_root)
+main()
+***
+------------------------------------------------------------------------------------
+***
+#Q3: Damage Report
+
+def create_error_log(string, file_path):
+    try:
+        open_file = open(file_path, 'r')
+        line_number = 1
+        error_message = ""
+        for line in open_file:
+            try:
+                ind = int(line.strip())
+                if ind < 0 or ind >= len(string):
+                    error_message = f"INDEXERROR at LINE {line_number}: The value read, {ind}, is out of range."
+            except ValueError:
+                error_message = f"VALUEERROR at LINE {line_number}: The value read, '{line.strip()}', cannot be casted into an integer to be used as an index."
+            line += 1
+        if error_message:
+            print(len(error_message) / (line_number - 1), file=open_file)
+            print(f"{error_message}\n", file=open_file)
+
+    except FileNotFoundError:
+        print("FILENOTFOUNDERROR: The file specified was not found or could not be opened.")
+
+
+def main():
+    create_error_log("ACTGC AXT", 'indices.txt')
+main()
