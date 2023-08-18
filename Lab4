@@ -1,0 +1,86 @@
+print("This is a four operation calculator.")
+
+start_or_stop = input("Hit enter to continue and Q to quit calculator: ")
+
+while start_or_stop != "Q":
+
+    if start_or_stop == "":
+
+        user_first_num = float(input("Enter your first number: "))
+        user_operator = str(input("Enter the operation (+, -, *, /): "))
+        user_second_num = float(input("Enter your second number: "))
+
+        if user_operator == '+':
+            print(str(user_first_num) + user_operator + str(user_second_num) + " = " + str(user_first_num + user_second_num))
+        elif user_operator == '-':
+            print(str(user_first_num) + user_operator + str(user_second_num) + " = " + str(user_first_num - user_second_num))
+        elif user_operator == '*':
+            print(str(user_first_num) + user_operator + str(user_second_num) + " = " + str(user_first_num * user_second_num))
+        elif user_operator == '/':
+            if user_second_num != 0.0:
+                print(str(user_first_num) + user_operator + str(user_second_num) + " = " + str(user_first_num / user_second_num))
+            else:
+                print(str(user_first_num) + user_operator + str(user_second_num) + " is an invalid operation. " )
+    start_or_stop = input("Hit enter to continue and Q to quit calculator: ")
+print("Goodbye!")
+***
+-------------------------------------------------------------------------------------------------------------
+***
+user_input_of_amount = int(input("Please enter a number: "))
+start_amount = 0
+num_1 = 1
+for amount in range(0, user_input_of_amount):
+    sum = num_1 + start_amount
+    num_1 = start_amount
+    start_amount = sum
+    print(sum)
+***
+-------------------------------------------------------------------------------------------------------------
+***
+user_input_base = int(input("Please enter a positive integer to serve as the base:"))
+user_input_highest_power = int(input("Please enter a positive integer to serve as the highest power:"))
+start_power = 0
+
+for power in range(0, user_input_highest_power+1):
+    print(user_input_base, " ^ ", start_power, " = ", user_input_base ** start_power)
+    start_power += 1
+***
+-------------------------------------------------------------------------------------------------------------
+***
+number_of_entries = int(input("Please enter how many positive values you want to consider: "))
+largest_entry = -1
+
+print("Enter your values: ")
+
+for num in range(number_of_entries):
+    current_value = float(input())
+
+    if current_value > largest_entry:
+        largest_entry = current_value
+print("The largest of these values is " + str(largest_entry))
+***
+-------------------------------------------------------------------------------------------------------------
+***
+import random
+
+print("Welcome to Blackjack!")
+
+player_sum = 0
+dealer_sum = 0
+player_action = ""
+
+dealer_sum = random.randrange(2, 22)
+
+while player_sum < 21 and player_action != "STAND":
+    player_card = random.randrange(1, 12)
+    player_sum += player_card
+
+    print("Your current card sum is ", player_card)
+    player_action = input("What would you like to do next? (DEAL, STAND)")
+
+if player_sum > 21 or player_sum < dealer_sum:
+    print("You lost! Your card sum was", player_sum, "and the dealer's was", dealer_sum)
+elif player_sum == dealer_sum:
+    print("You tied with the dealer!")
+else:
+    print("You won! Your card sum was", player_sum, "and the dealer's was", dealer_sum)
