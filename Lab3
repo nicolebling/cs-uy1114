@@ -1,0 +1,169 @@
+user_location_input = str(input("Which garage did you park in? "))
+print("Please enter the hour, followed by minutes, you entered the garage (military time)")
+enter_parking_hour_input = int(input(" "))
+enter_parking_minute_input = int(input(" "))
+print("Please enter the hour, followed by minutes, you left the garage (military time):")
+left_parking_hour_input = int(input (" "))
+left_parking_minute_input = int(input(" "))
+# example input 10.25-8.75=1.50
+time_duration = (left_parking_hour_input + (left_parking_minute_input / 60) )-(enter_parking_hour_input + (enter_parking_minute_input / 60))
+time_duration_after_free_15 = time_duration - (15/60)
+if user_location_input == 'North':
+    if time_duration_after_free_15 <= 0:
+        total_cost = 0.00
+    elif time_duration_after_free_15 <= 1:
+        total_cost = 6.00
+    elif time_duration_after_free_15 <= 2:
+        total_cost = 8.00
+    elif time_duration_after_free_15 <= 4:
+        total_cost = 10.00
+    elif enter_parking_hour_input >= 9 and left_parking_hour_input <= 17:
+        total_cost = 14.00
+    elif time_duration_after_free_15 <= 12:
+        total_cost = 16.00
+
+if user_location_input == 'South':
+    if time_duration_after_free_15 <=0:
+        total_cost = 0.00
+    elif time_duration_after_free_15 <= 1:
+        total_cost = 8.00
+    elif time_duration_after_free_15 <= 2:
+        total_cost = 10.00
+    elif time_duration_after_free_15 <= 4:
+        total_cost = 12.00
+    elif enter_parking_hour_input >= 9 and left_parking_hour_input <= 17:
+        total_cost = 16.00
+    elif time_duration_after_free_15 <= 12:
+        total_cost = 18.00
+
+print("Your total price for parking will be $" + str(total_cost))
+***
+------------------------------------------------------------------------------------------
+***
+highest_exam_grade = int(input("Enter your highest exam grade: "))
+second_highest_exam_grade = int(input("Enter your second highest exam grade: "))
+third_highest_exam_grade = int(input("Enter your third highest exam grade: "))
+average_homework_grade = int(input("Enter your average homework grade: "))
+average_lab_grade = int(input("Enter your average lab grade: "))
+
+weighted_average_grade = highest_exam_grade * 0.25 + second_highest_exam_grade * 0.2 + third_highest_exam_grade * 0.15 + average_homework_grade * 0.2 + average_lab_grade * 0.2
+
+if weighted_average_grade >= 92:
+    letter_grade = 'A'
+elif 90 <= weighted_average_grade < 92:
+    letter_grade = 'A-'
+elif 87 <= weighted_average_grade < 90:
+    letter_grade = 'B+'
+elif 83 <= weighted_average_grade < 87:
+    letter_grade = 'B'
+elif 80 <= weighted_average_grade < 83:
+    letter_grade = 'B-'
+elif 77 <= weighted_average_grade < 80:
+    letter_grade = 'C+'
+elif 73 <= weighted_average_grade < 77:
+    letter_grade = 'C'
+elif 70 <= weighted_average_grade < 73:
+    letter_grade = 'C-'
+elif 67 <= weighted_average_grade < 70:
+    letter_grade = 'D+'
+elif 60 <= weighted_average_grade < 67:
+    letter_grade = 'D'
+elif weighted_average_grade < 60:
+    letter_grade = 'F'
+
+print("Your final grade is " + letter_grade)
+***
+------------------------------------------------------------------------------------------
+***
+user_first_num = float(input("Enter your first number: "))
+user_operator = str(input("Enter the operation (+, -, *, /): "))
+user_second_num = float(input("Enter your second number: "))
+
+if user_operator == '+':
+    print(str(user_first_num) + user_operator + str(user_second_num) + " = " + str(user_first_num + user_second_num))
+elif user_operator == '-':
+    print(str(user_first_num) + user_operator + str(user_second_num) + " = " + str(user_first_num - user_second_num))
+elif user_operator == '*':
+    print(str(user_first_num) + user_operator + str(user_second_num) + " = " + str(user_first_num * user_second_num))
+elif user_operator == '/':
+    if user_second_num != 0.0:
+        print(str(user_first_num) + user_operator + str(user_second_num) + " = " + str(user_first_num / user_second_num))
+    else:
+        print(str(user_first_num) + user_operator + str(user_second_num) + " is an invalid operation. " )
+***
+------------------------------------------------------------------------------------------
+***
+total_price = 5
+user_card_rarity = input("Welcome to the Pokémon card price calculator! Is your card of a special rarity? (Y/N ")
+if user_card_rarity == 'Y':
+    user_card_uncommon = input("Is your card uncommon? ")
+    if user_card_uncommon == 'Y':
+        total_price = total_price + 5
+    else:
+        user_card_rare = input("Is your card rare?")
+        if user_card_rare == 'Y':
+            total_price = total_price + 15
+
+user_card_holographic = str(input("Is your card holographic? "))
+if user_card_holographic == 'Y':
+    user_card_reverse_holo = str(input("Is your card a reverse holo? "))
+    if user_card_reverse_holo == 'Y':
+        total_price = total_price + 10
+    else:
+        user_card_holo = str(input("Is your card a holo? "))
+        if user_card_holo == 'Y':
+            total_price = total_price + 15
+        else:
+            user_card_full_holo = str(input("Is your card a full holo?"))
+            if user_card_full_holo == 'Y':
+                total_price = total_price + 20
+user_card_specialty = str(input("Is your card of a special Pokémon? "))
+if user_card_specialty == 'Y':
+    total_price = total_price
+    user_card_starter = str(input("Is your card of a starter?  "))
+    if user_card_starter == 'Y':
+        total_price = total_price + 5
+    user_card_legendary = str(input("Is your card of a legendary?  "))
+    if user_card_legendary == 'Y':
+        total_price = total_price + 30
+
+print("Your card has a final resale price of: $" + str(total_price))
+***
+------------------------------------------------------------------------------------------
+***
+snake_venomous = input("Is the snake venomous? (yes/no) ")
+snake_small = input("Is the snake small? ")
+snake_aggressive = input("Is the snake aggressive? ")
+
+if snake_venomous == 'no':
+    if snake_small == 'no':
+        if snake_aggressive == 'no':
+            snake_type = 'Python Python.'
+            snake_description =' One of the largest and most famous snakes. However, they are pretty slow, and are commonly used to introduce people to learning about snakes.'
+        else:
+            snake_type = 'Assembly Anaconda. '
+             snake_description = 'Many people hate learning about these snakes, as they look very intimidating. In the Totally Official CS1114 Snake Register, they are said to love being in low level altitudes.'
+    else:
+        if snake_aggressive == 'no':
+            snake_type = 'Java Kingsnake.'
+            snake_description = ' Very befitting of their name, they are objectively the most sophisticated snake species. One may even say they are very classy.'
+        else:
+            snake_type = 'Javascript Treesnake. '
+            snake_description = 'Despite its name, they are completely different from the Java Kingsnake. They like to lay on the nodes of a tree to browse through nearby animals for their next meal.'
+else:
+    if snake_small == 'no':
+        if snake_aggressive == 'no':
+            snake_type = 'C Serpent. '
+            snake_description = 'Can be found in the sea. Has the ability to control their memory, being able to allocate parts of their brain for certain tasks and permanently delete information from their memories.'
+        else:
+            snake_type = 'C++ Cobra. '
+            snake_description = 'Evolved from the C Serpants many years ago. Reports show they have the weird habit of pointing at objects with their tails.'
+    else:
+        if snake_aggressive == 'no':
+            snake_type = 'Verilog Viper.'
+            snake_description = ' Many people first see these snakes around architectures. Reports claim that they like to chew on circuit wires.'
+        else:
+            snake_type = 'Matlab Mamba. '
+            snake_description = 'Commonly used to introduce mechies to working with snakes. They often hatch plots to catch their prey and enjoys graphical images.'
+
+print("This is " + snake_type + snake_description)
