@@ -1,0 +1,161 @@
+def decode_letter(letter, key):
+    if letter.isupper():
+        ascii_value_a = UPPER_ASCII_VALUE_A
+    else:
+        ascii_value_a = LOWER_ASCII_VALUE_A
+
+    ascii_letter_value = ord(letter) - ascii_value_a
+    decrypted_ascii_value = (ascii_letter_value - key) % SIZE_OF_ALPHABETS
+    decrypted_ascii_value += ascii_value_a
+
+    decrypted_character = chr(decrypted_ascii_value)
+
+    return decrypted_character
+
+def decode_caesar(encoded_message, key):
+    decoded_message = ""
+
+    for char in encoded_message:
+        if char.isalpha():
+            decoded_message += decode_letter(letter = char, key = key)
+        else:
+            decoded_message += char
+    return decoded_message
+
+def main():
+    print("Daaaamm that's crazy")
+    decryption_key = 3
+    line = input("Enter the encoded line: ")
+    decryption = decode_caesar(line, decryption_key)
+    print(decryption)
+
+main()
+***
+-----------------------------------------------------------------------------------------
+***
+def numberify(word):
+    output = ""
+
+    for char in word:
+        if char == "A":
+            output += "4"
+        elif char ==  "E":
+            output += "3"
+        elif char == "I":
+            output += "1"
+        elif char == "S":
+            output += "5"
+        elif char == "T":
+            output += "7"
+        elif char == "O":
+            output += "0"
+        else:
+            output += char
+
+    return output
+
+def main():
+    user_input = input ("Please enter a nessage to numerify: ")
+    user_input += " "
+    user_input = user_input.upper()
+
+    output = " "
+    word_start_ind = 0
+
+    for num in range(len(user_input)):
+        if user_input[num] == ' ':
+            curr_word = user_input[word_start_ind: num]
+            word_start_ind = num + 1
+            if len(curr_word) > 3:
+                output += numberify(curr_word)
+            else:
+                output += curr_word
+
+            output += " "
+    print()
+    print("Your numberified string is : ", output)
+
+if __name__ == "__main__":
+    print("Daaaaamn that's crazy")
+    main()
+***
+-----------------------------------------------------------------------------------------
+***
+def calculate_income(hourly_rate):
+    total_hours = 0
+    for i in range(5):
+        hours = int("Enter the number of hours worked otday:")
+        total_hours += hours
+    if total_hours > 40:
+        regular_pay = 40 * hourly_rate
+        overtime_hours = total_hours - 40
+        overtime_pay = overtime_hours * (hourly_rate * 1.5)
+        total_pay = overtime_pay + regular_pay
+    else:
+        total_pay = total_hours * hourly_rate
+    return total_pay
+
+def calculate_expenses():
+    total_expenses = 0
+    current_expenses = input("Enter how much money you spent or Q if done:")
+    while current_expenses != "Q":
+        current_expenses = float(current_expenses)
+        total_expenses += current_expenses
+        current_expenses = input("Enter how much money you spent or Q if done:")
+    return total_expenses
+
+def budget_outcome(income, expenses):
+    net_change = income - expenses
+    if income - expenses > 0:
+        print("Well done you had a gain of {}".format(net_change))
+    else:
+        print("You had a loss of {}".format(net_change))
+    return net_change
+
+def main():
+    income = calculate_income(15)
+    expenses = calculate_expenses()
+    budget_outcome(income, expenses)
+
+main()
+***
+-----------------------------------------------------------------------------------------
+***
+def prompt_user_for_pw():
+    passcode = input("Please create a password:")
+    return passcode
+def is_strong_pw(passcode):
+    has_uppercase = False
+    has_number = False
+    has_lowercase = False
+    has_enough_characters = False
+    has_special_characters = False
+    for index in range(len(passcode)):
+        if passcode[index].isdigit():
+            has_number = True
+        elif passcode[index].isupper():
+            has_uppercase = True
+        elif passcode[index].isalpha():
+            has_lowercase = True
+        elif 8 >= len(passcode):
+            has_enough_characters = True
+        elif 33 != ord(passcode[index]) or 64 != ord(passcode[index]) or 35 != ord(passcode[index]) or 42 != ord(passcode[index]):
+            has_special_characters = True
+
+    if has_uppercase == False or has_number == False or has_lowercase == False or has_enough_characters == False or has_enough_characters == False or has_special_characters == False:
+        print("Password too weak!")
+        pw = False
+    else:
+        pw = True
+
+    return pw
+def main():
+
+    print("Welcome! ")
+    passcode = prompt_user_for_pw()
+    power = is_strong_pw(passcode)
+    if power == True:
+        print("Thank you! Your password is considered strong.")
+
+
+main()
