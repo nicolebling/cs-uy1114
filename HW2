@@ -1,0 +1,138 @@
+#Q1: Harmonic Analysis
+
+from math import sin
+
+#user input for frequency
+input_for_frequency = float(input("Enter a value for the frequency, w: "))
+#user input for duration of sound wave
+input_duration_of_sound_wave = float(input("Enter a value for the duration of the sound wave, T: "))
+
+#amplitude spectrum equation
+amplitude_spectrum_equation = 2 * sin(input_for_frequency * input_duration_of_sound_wave) / input_for_frequency
+amplitude_spectrum_equation = round(amplitude_spectrum_equation, 3)
+
+print("The amplitude spectrum of this Fourier transform is: " + str(amplitude_spectrum_equation))
+***
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q2: Oh No! The Pokémon Broke Free!
+
+import random
+
+#user input of the max health of the pokemon
+hp_max = int(input("Enter the max health of this Pokémon: "))
+ball_value = random.randint(1,255)
+hp_current = random.randint(1, hp_max)
+final_pseudo_number = random.randint(0, 255)
+#print(final_pseudo_number)
+
+function_of_pokemon = ((hp_max * 255 * 4)/(hp_current * ball_value))
+#print(function_of_pokemon)
+
+if function_of_pokemon >= final_pseudo_number:
+    print("You've caught the Pokémon")
+elif function_of_pokemon < final_pseudo_number:
+    print("Oh no! The Pokémon broke free!")
+else:
+    print("ERROR!")
+
+***
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q3: Collective Timetables
+
+#Semi's work time
+days_semi_worked = int(input("Please enter the number of days Semi has worked: "))
+hours_semi_worked = int(input("Please enter the number of hours Semi has worked: "))
+minutes_semi_worked = int(input("Please enter the number of minutes Semi has worked: "))
+
+#Daniel's work time
+days_daniel_worked = int(input("Please enter the number of days Daniel has worked: "))
+hours_daniel_worked = int(input("Please enter the number of hours Daniel has worked: "))
+minutes_daniel_worked = int(input("Please enter the number of minutes Daniel has worked: "))
+
+total_worktime_days = days_semi_worked + days_daniel_worked
+total_worktime_hours = hours_semi_worked + hours_daniel_worked
+total_worktime_minutes = minutes_semi_worked + minutes_daniel_worked
+
+if total_worktime_minutes >= 60:
+    total_worktime_hours += (1 * (total_worktime_minutes // 60))
+    total_worktime_minutes -= (60 * (total_worktime_minutes // 60))
+else:
+    total_worktime_hours += 0
+
+if total_worktime_hours >= 24:
+    total_worktime_days += (1 * (total_worktime_hours // 24))
+    total_worktime_hours -= (24 * (total_worktime_hours // 24))
+else:
+    total_worktime_days += 0
+
+print("The total time both of them worked together is : " +
+      str(total_worktime_days) + " days, " + str(total_worktime_hours) + " hours and " + str(total_worktime_minutes) + " minutes")
+***
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q4: It's super Effective!
+
+import random
+
+pokemon_level = int(input("What is the Pokémon's level? "))
+pokemon_speed = int(input("What is the Pokémon's speed? "))
+
+random_value_r = random.randint(0,255)
+threshold_value_t = (pokemon_speed / 2)
+if threshold_value_t > random_value_r:
+    damage_multiplier_m = (2 * pokemon_level + 6) / (pokemon_level + 6)
+    damage_multiplier_m = round(damage_multiplier_m, 2)
+else:
+    damage_multiplier_m = 1
+
+print("The Pokémon move will be " + str(damage_multiplier_m) + "x stronger!")
+***
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q5: Are You Experienced?
+
+user_current_xp = float(input("Enter this user's current XP: "))
+
+if user_current_xp < 15.0:
+    user_level = 1
+    print("Level " + str(user_level) + " Player (XP: " + str(user_current_xp) + ")")
+elif 15.0 <= user_current_xp <= 24.9:
+    user_level = 2
+    print("Level " + str(user_level) + " Player (XP: " + str(user_current_xp) + ")")
+elif 25.0 <= user_current_xp <= 29.9:
+    user_level = 3
+    print("Level " + str(user_level) + " Player (XP: " + str(user_current_xp) + ")")
+elif 30.0 <= user_current_xp <= 39.9:
+    user_level = 4
+    print("Level " + str(user_level) + " Player (XP: " + str(user_current_xp) + ")")
+elif 40.0 <= user_current_xp <= 60.0:
+    user_level = 5
+    print("Level " + str(user_level) + " Player (XP: " + str(user_current_xp) + ")")
+else:
+    print("ERROR: Please enter a valid XP value.")
+***
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+***
+#Q6: Oh, Oh, Telephone Line, Give Me Some Time.
+
+#user input of day
+day_call_at = input("Enter the day the call started at: ")
+time_call = int(input("Enter the time the call started at (hhmm): "))
+call_duration = int(input("Enter the duration of the call (in minutes): "))
+
+start_time = 530
+end_time = 2100
+
+if (day_call_at == ("Mon" or "Tue" or "Wed" or "Thr")) and (start_time <= time_call <= end_time):
+    bill_rate = 0.55
+elif (day_call_at == ("Mon" or "Tue" or "Wed" or "Thr")) and (time_call < start_time or end_time < time_call):
+    bill_rate = 0.35
+elif day_call_at == ("Fri" or "Sat" or "Sun") and 0 <= time_call <= 2400:
+    bill_rate = 0.1
+
+
+total_cost = bill_rate * call_duration
+total_cost = round(total_cost, 1)
+print("This call will cost $" + str(total_cost))
