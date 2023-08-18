@@ -1,0 +1,49 @@
+import random
+random_number = random.randint(0,100)
+result_1 = random_number // 2 == 0
+print(str(random_number) + " is even : " + str(result_1))
+result_2 = random_number > 50
+print(str(random_number) + " is greater than 50 : " + str(result_2))
+***
+--------------------------------------------------------------------------------
+***
+user_input = int(input("Please enter a decimal integer less than 100: "))
+
+#fifty
+fifty_convert = "L"
+ten_convert = "X"
+five_convert = "V"
+one_convert = "I"
+
+print((user_input // 50) * fifty_convert + ((user_input % 50) // 10) * ten_convert + ((user_input % 50) % 10) // 5 * five_convert +
+      (((user_input % 50) % 10) % 5) // 1 * one_convert )
+***
+--------------------------------------------------------------------------------
+***
+import random
+random_ladder = random.randint( 0, 100)
+random_number = random.randint( 0, 100)
+print(random_ladder)
+print(random_number)
+
+distance_from_wall = int(input("How  many meters from the wall will the ladder be? "))
+height_of_wall = int(input("How many meters tall is the wall?"))
+
+result_1 = ((distance_from_wall ** 2 + height_of_wall **2) ** 0.5) <= random_ladder
+total_result = result_1 and (random_number < 40)
+
+print("From a distance of " + str(distance_from_wall) + " meters and a wall height of "
+      + str(height_of_wall) + " meters, can we reach the roof?: " + str(total_result))
+***
+--------------------------------------------------------------------------------
+***
+x1 = 0.0
+x2 = 1.0
+x3 = -1.0
+f_of_x1 =( 1 / (2*math.pi) ** 0.5) * math.e ** (-0.5 * x1 ** 2)
+f_of_x2 =( 1 / (2*math.pi) ** 0.5) * math.e ** (-0.5 * x2 ** 2)
+f_of_x3 =( 1 / (2*math.pi) ** 0.5) * math.e ** (-0.5 * x3 ** 2)
+
+print("The value of the pdf at x = " + str(x1) + " is " + str(f_of_x1))
+print("The value of the pdf at x = " + str(x2) + " is " + str(f_of_x2))
+print("The value of the pdf at x = " + str(x3) + " is " + str(f_of_x3))
