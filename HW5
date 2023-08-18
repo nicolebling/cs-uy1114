@@ -1,0 +1,157 @@
+#Question 1: Working With Limitations
+
+input_original = input("Say something: ")
+input_final = input_original.lower()
+print(input_final)
+
+changed_letters = 0
+unchanged_letters = 0
+whitespace_characters = 0
+non_alphabetic_characters = 0
+
+for char in input_original:
+
+    if 'A' <= char <= 'Z':
+        changed_letters += 1
+    elif char == " ":
+        whitespace_characters += 1
+    elif 'a' <= char <= 'z':
+        unchanged_letters += 1
+    else:
+        non_alphabetic_characters += 1
+
+print("Number of changed letters: ", changed_letters)
+print("Number of unchanged letters: ", unchanged_letters)
+print("Number of whitespace characters: ", whitespace_characters)
+print("Number of non-alphabetic characters: ", non_alphabetic_characters + whitespace_characters)
+***
+-------------------------------------------------------------------------------------------------------
+***
+#Q2: Complementary Service
+
+first_DNA = input("Enter a DNA sequence: ")
+second_DNA = input("Enter a second DNA sequence: ")
+
+combine_before = ""
+invalid_char = 0
+DNA_1 = 0
+DNA_2 = 0
+
+while DNA_1 < len(first_DNA) and DNA_2 < len(second_DNA):
+    if first_DNA[DNA_1] == 'A' or first_DNA[DNA_1] == 'C' or first_DNA[DNA_1] == 'T' or first_DNA[DNA_1] == 'G':
+        combine_before += first_DNA[DNA_1]
+        DNA_1 += 1
+    else:
+        invalid_char += 1
+        DNA_1 += 1
+
+    if second_DNA[DNA_2] == 'A' or second_DNA[DNA_2] == 'C' or second_DNA[DNA_2] == 'T' or second_DNA[DNA_2] == 'G':
+        combine_before += second_DNA[DNA_2]
+        DNA_2 += 1
+    else:
+        invalid_char += 1
+        DNA_2 +=1
+
+while DNA_1 < len(first_DNA):
+    if first_DNA[DNA_1] == 'A' or first_DNA[DNA_1] == 'C' or first_DNA[DNA_1] == 'T' or first_DNA[DNA_1] == 'G':
+        combine_before += first_DNA[DNA_1]
+        DNA_1 += 1
+    else:
+        invalid_char += 1
+        DNA_1 += 1
+
+while DNA_2 < len(second_DNA):
+    if second_DNA[DNA_2] == 'A' or second_DNA[DNA_2] == 'C' or second_DNA[DNA_2] == 'T' or second_DNA[DNA_2] == 'G':
+        combine_before += second_DNA[DNA_2]
+        DNA_2 += 1
+    else:
+        invalid_char += 1
+        DNA_2 +=1
+
+combine_after = ""
+for x in combine_before:
+    if x == 'A':
+        combine_after += 'T'
+    elif x == 'C':
+        combine_after += 'G'
+    elif x == 'T':
+        combine_after += 'A'
+    elif x == 'G':
+        combine_after += 'C'
+
+print(combine_after, " | Invalid characters: ", invalid_char)
+***
+-------------------------------------------------------------------------------------------------------
+***
+#Q3: Lexicographic Trends
+
+user_input = input("Please enter a string of lowercase letters: ")
+
+location = 0
+characters = 1
+while characters < len(user_input):
+    if user_input[characters] > user_input[characters - 1]:
+        characters = len(user_input)
+        location = characters
+    else:
+        characters += 1
+
+if characters < len(user_input):
+    print(user_input, " is decreasing.")
+else:
+    print(user_input, "is not decreasing.")
+    print("It stopped being lexicographically decreasing at location", location)
+***
+-------------------------------------------------------------------------------------------------------
+***
+#Q4: Read Between The Lines
+
+user_input_string = input("Enter an encoded string: ")
+user_input_key = int(input("Enter a key: "))
+
+message = ""
+for i in range(len(user_input_string) - 1, -1, -(user_input_key + 1)):
+    if str(1) > user_input_string[i] or str(9) < user_input_string[i] :
+        message += user_input_string[i]
+
+print("Your message is '", message, "'")
+***
+-------------------------------------------------------------------------------------------------------
+***
+Q5:
+
+import arpeggiator
+
+ARPEGGIATOR = arpeggiator.Arpeggiator()
+UP = arpeggiator.Direction.UP
+DOWN = arpeggiator.Direction.DOWN
+
+
+user_input = input("Enter a musical note ( i.e. A, Db, C#, etc.) or 'DONE' to end: ")
+
+while user_input != "DONE":
+    while user_input != "Ab" and user_input != "A#" and user_input != "A" and user_input != "Bb" and user_input != "B" and user_input != "C#" and user_input != "C" and user_input != "Db" and user_input != "D#" and user_input != "D" and user_input != "Eb" and user_input != "E" and user_input != "F#" and user_input != "F" and user_input != "Gb" and user_input != "G#" and user_input != "G":
+        print("WARNING: '" +  str(user_input) + "' is not a valid note.")
+        print("VALID NOTES: Ab, A#, A, Bb, B, C#, C, Db, D#, D, Eb, E, F#, F, Gb, G#, G \n")
+        user_input = input("Enter a musical note ( i.e. A, Db, C#, etc.) or 'DONE' to end: ")
+
+    ARPEGGIATOR.add_note(user_input)
+    #print(ARPEGGIATOR)
+    user_input = input("Enter a musical note ( i.e. A, Db, C#, etc.) or 'DONE' to end: ")
+
+print("\n" + str(ARPEGGIATOR), "\n")
+
+
+direction = input("Enter an arpeggiator direction [U/D]: ")
+while direction != "U" and direction != "D":
+    direction = input("Enter an arpeggiator direction [U/D]: ")
+
+times = int(input("\nHow many times do you want your arpeggiator to play? "))
+while times <= 0:
+    times = int(input("How many times do you want your arpeggiator to play? (Must be positive amount) "))
+
+for n in range(times):
+    if direction == "U":
+        ARPEGGIATOR.play(UP)
+    elif direction == "D":
+        ARPEGGIATOR.play(DOWN)
