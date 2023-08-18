@@ -1,0 +1,144 @@
+def consecutive_numbers(filename, n):
+    try:
+        new_file = open(filename, 'w')
+    except FileNotFoundError:
+        print("{} could not be found". format(filename))
+    else:
+        for numbers in range(1, n + 1):
+            print(numbers, file=new_file)
+
+    new_file.close()
+
+def squared_numbers(filename, outFile):
+    try:
+        number_file = open(filename, 'r')
+    except FileNotFoundError:
+        print("{} could not be found". format(filename))
+        return
+
+    new_file_2 = open(outFile, 'w')
+    for line in number_file:
+        line = line.strip()
+        numbers = int(line)
+        squared_number = numbers ** 2
+        print(squared_number, file=new_file_2)
+
+    number_file.close()
+    new_file_2.close()
+
+def main():
+    consecutive_numbers("numbers.txt", 7)
+    squared_numbers("numbers.txt", "squaredNumbers.txt")
+
+main()
+***
+------------------------------------------------------------------------
+***
+def remove_Es(msg):
+    open_file = open(msg, 'r')
+    open_file = open_file.strip()
+    msg = msg.replace("E", "")
+    msg = msg.replace("e", "")
+    new_
+
+def remove_Es_new_file(filename):
+    try:
+        file = open(filename, 'r')
+    except FileNotFoundError:
+
+def main():
+    EVIL_ES_MSG = "evil_es_msg.txt"
+    EVIL_ES_COPY = "evil_es_copy.txt"
+
+    remove_Es_new_file(EVIL_ES_MSG)
+    remove_Es_same_file(EVIL_ES_COPY)
+# A copy of the og message for testing
+
+main()
+***
+------------------------------------------------------------------------
+***
+def get_average(filename):
+    acc = 0
+    amount = 0
+
+    file = open(filename, 'r')
+    if filename == 'None':
+        return -1
+    for line in file:
+        line = line.strip()
+        try:
+            grade = float(line)
+        except ValueError:
+            amount -= 1
+            acc -= line
+        except FileNotFoundError:
+            return 0
+        except ZeroDivisionError:
+            return 0
+        else:
+            acc += line
+            amount += 1
+
+    average = acc / amount
+    return average
+***
+------------------------------------------------------------------------
+***
+#correct answer
+
+def get_average(filename):
+    if not filename:
+        return -1
+    acc = 0
+    amount = 0
+
+    try:
+        file = open(filename, 'r')
+    except FileNotFoundError:
+        return 0
+
+    for line in file:
+        line = line.strip()
+
+        try:
+            grade = float(line)
+        except ValueError:
+            continue
+        else:
+            acc += grade
+            amount += 1
+
+        try:
+            average = acc / amount
+        except ZeroDivisionError:
+            return 0
+
+        return average
+
+def decode_roman_file(file1, file2):
+    try:
+        roman = open(file1, 'r')
+    except FileNotFoundError:
+        print("Can't find the file")
+        return False
+    roman_file_contents = ""
+    for line in roman:
+        roman_file_contents += line.strip("\n")
+    roman.close()
+    roman_decoded = decode_entire_message(roman_file_contents)
+
+    #write the decoded into a file
+    roman_decoded_file = open(file2, 'w')
+
+    roman.close()
+    return True
+
+
+
+def main():
+    ROMAN_FILE = "roman_code_msg.txt"
+    ROMAN_DECODED_FILE = "secret_msg.txt"
+    decode_roman_file(ROMAN_FILE, ROMAN_DECODED_FILE)
+
+main()
